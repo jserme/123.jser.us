@@ -1,0 +1,5 @@
+node_modules
+publish*
+publish/*
+.DS_Store
+*.swp

@@ -1,0 +1,64 @@
+!!! 5
+html(lang='zh')
+  head
+    title 前端导航站 - 前端工程师专用的导航站
+    meta(http-equiv='content-type', content='text/html; charset=utf-8')
+    meta(name='baidu-site-verification', content='77c1c417ca4e5d0fa792494f27c99f06')
+    meta(name='Keywords', content='前端工程师网站导航，前端工程师网址导航， Feder网址导航，前端导航，前端工程师导航，前端教程，优秀前端工程师聚合')
+    meta(name='description', content='content')
+    meta(name='viewport', content='width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no')
+    link(href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', type='text/css', href='style.css')
+  body
+    .navbar.navbar-inverse
+      .navbar-inner
+        .container
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='./index.html') 123.jser.us
+          .nav-collapse.collapse
+            .pull-right.navbar-text
+              #bdshare.bdshare_t.bds_tools.get-codes-bdshare
+                a.bds_tsina
+                a.bds_qzone
+                a.bds_tqq
+                a.bds_renren
+                a.bds_t163
+                a.shareCount
+            ul.nav
+              li
+                a(href='.') 前端导航站
+              li
+                a(href='') 我要补充
+              li
+                a(href='') 微博反馈
+    .container
+      .tag
+        table(cellspacing='0')
+          tr
+            td.header
+              h2  类库 
+            td
+              ul
+                li
+                  a(href='')
+                    h3  jQuery
+                    p  我是一个全球出名的东西，你们懂的
+    .footer
+      .container
+        p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！
+        p  最后更新于 #{buildDate}
+    script(src='http://libs.baidu.com/jquery/1.8.0/jquery.js')
+    script(src='http://libs.baidu.com/bootstrap/2.0.4/js/bootstrap.min.js')
+    script(type='text/javascript')
+      $('body').tooltip({
+      selector: "a[data-toggle=tooltip]"
+      })
+    // Baidu Button BEGIN
+    script#bdshare_js(type='text/javascript', data='type=tools&uid=663830')
+    script#bdshell_js(type='text/javascript')
+    script(type='text/javascript')
+      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+    // Baidu Button END
