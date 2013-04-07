@@ -31,21 +31,23 @@ html(lang='zh')
               li
                 a(href='.') 前端导航站
               li
-                a(href='') 我要补充
+                a(href='https://github.com/jserme/123.jser.us/issues') 我要补充
               li
-                a(href='') 微博反馈
+                a(href='http://weibo.com/ihubo') 微博反馈
     .container
-      .tag
-        table(cellspacing='0')
-          tr
-            td.header
-              h2  类库 
-            td
-              ul
-                li
-                  a(href='')
-                    h3  jQuery
-                    p  我是一个全球出名的东西，你们懂的
+        each  sites,tag in tags
+          .tag
+            table(cellspacing='0')
+              tr
+                td.header
+                  h2  #{tag} 
+                td
+                  ul
+                    each site in sites
+                        li
+                           a(href="#{site.url}", target="_blank")
+                             h3 #{site.name} 
+                             p  #{site.description} 
     .footer
       .container
         p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！
