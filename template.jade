@@ -52,3 +52,9 @@ html(lang='zh')
       $('body').tooltip({
       selector: "a[data-toggle=tooltip]"
       })
+    script(type='text/javascript')
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'hm.baidu.com/h.js?73cf2d97668510747e3153441714c59d';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
