@@ -16,9 +16,6 @@
         <div class="container">
           <button type="button" data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="./index.html" class="brand">123.jser.us</a>
           <div class="nav-collapse collapse">
-            <div class="pull-right navbar-text">
-              <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><a class="bds_t163"></a><a class="shareCount"></a></div>
-            </div>
             <ul class="nav">
               <li><a href=".">前端导航站</a></li>
               <li><a href="https://github.com/jserme/123.jser.us#readme" target="_blank">我要补充</a></li>
@@ -163,7 +160,7 @@
     <div class="footer">
       <div class="container">
         <p> 感谢各种开源项目, 一个程序猿的生活因为你们更美好！</p>
-        <p> 最后更新于 2013-04-08 01:20:20</p>
+        <p> 最后更新于 2013-04-08 01:23:20</p>
       </div>
     </div>
     <script src="http://libs.baidu.com/jquery/1.8.0/jquery.js"></script>
@@ -173,10 +170,12 @@
       selector: "a[data-toggle=tooltip]"
       })
     </script>
-    <!-- Baidu Button BEGIN-->
-    <script id="bdshare_js" type="text/javascript" data="type=tools&amp;uid=663830"></script>
-    <script id="bdshell_js" type="text/javascript"></script>
-    <script type="text/javascript">document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)</script>
-    <!-- Baidu Button END-->
+    <script type="text/javascript">
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'hm.baidu.com/h.js?73cf2d97668510747e3153441714c59d';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </body>
 </html>
