@@ -50,10 +50,9 @@ fs.readdir(DATAFOLDER, function(err, files) {
 	files.forEach(function(v, i) {
 		fs.readFile(path.join(DATAFOLDER, v), 'utf8', function(err, j) {
 			var siteName, o, tags;
-
-			siteName = v.replace(/\.json$/, '');
+			//siteName = v.replace(/\.json$/, '');
 			o = eval('(' + j.trim() + ')');
-            o.name = siteName;
+            o.name = v;
 
 			tags = o.tags.split(/,| |，| /);
 			tags.forEach(function(v, i) {
