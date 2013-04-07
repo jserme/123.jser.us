@@ -10,6 +10,8 @@ html(lang='zh')
     link(href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css", rel="stylesheet")
     link(rel='stylesheet', type='text/css', href='style.css')
   body
+    a(class="ribbon", href="http://github.com/jserme/123.jser.us", target="_blank")
+        img(src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png", alt="Fork me on GitHub")
     .navbar.navbar-inverse
       .navbar-inner
         .container
@@ -19,14 +21,6 @@ html(lang='zh')
             span.icon-bar
           a.brand(href='./index.html') 123.jser.us
           .nav-collapse.collapse
-            .pull-right.navbar-text
-              #bdshare.bdshare_t.bds_tools.get-codes-bdshare
-                a.bds_tsina
-                a.bds_qzone
-                a.bds_tqq
-                a.bds_renren
-                a.bds_t163
-                a.shareCount
             ul.nav
               li
                 a(href='.') 前端导航站
@@ -58,9 +52,3 @@ html(lang='zh')
       $('body').tooltip({
       selector: "a[data-toggle=tooltip]"
       })
-    // Baidu Button BEGIN
-    script#bdshare_js(type='text/javascript', data='type=tools&uid=663830')
-    script#bdshell_js(type='text/javascript')
-    script(type='text/javascript')
-      document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-    // Baidu Button END
