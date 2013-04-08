@@ -35,6 +35,18 @@ function parseTmpl() {
 		var fn = jade.compile(tmpl, {
 			pretty: true
 		});
+
+        var keyArry = [];
+        for( var key in data.tags ) {
+           keyArry.push( key ); 
+
+           //保证顺序
+           data.tags[key] = data.tags[key].sort(function(a, b){ return a.name < b.name}); 
+        }
+
+        //保证顺序
+        data.keyArry = keyArry.sort();
+
 		fs.writeFile(DSTFILE, fn(data), 'utf-8', function(err) {
 			if (err) {
 				console.log(err);

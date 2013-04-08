@@ -29,7 +29,7 @@ html(lang='zh')
               li
                 a(href='http://weibo.com/ihubo', target='_blank') 微博反馈
     .container
-        each  sites,tag in tags
+        each  tag in keyArry
           .tag
             table(cellspacing='0')
               tr
@@ -37,7 +37,7 @@ html(lang='zh')
                   h2  #{tag} 
                 td
                   ul
-                    each site in sites
+                    each site in tags[ tag ]
                         li
                            if( site.description.length > 26 ) 
                                a(href="#{site.url}", target="_blank", data-toggle="tooltip", title="#{site.description}")
