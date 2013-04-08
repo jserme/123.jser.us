@@ -27,6 +27,8 @@
    background-color: #F7F7F9;
    border: 1px solid #E1E1E8; 
    padding:10px;
+   width:100px;
+   text-align:center;
 }
 
 .tag ul{
