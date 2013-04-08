@@ -29,7 +29,9 @@ function init() {
 			}), function(err) {
 				if (err) {
 					throw err
-				}
+                } else {
+                    console.log( '撒花～～～你又添加了一个\n\n')
+                }
 			});
 
 			i = 0;
