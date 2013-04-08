@@ -1,0 +1,5 @@
+{
+    description : '基于 SeaJS 和 CMD 规范，开放、简单、易用的前端解决方案。',
+    tags : '类库',
+    url : 'http://aralejs.org/'
+}
