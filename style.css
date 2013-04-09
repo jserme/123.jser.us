@@ -1,3 +1,8 @@
+.tooltip{
+    font-family: Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+    font-size:13px;
+}
+
 .navbar-inner {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
