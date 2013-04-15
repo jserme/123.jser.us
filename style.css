@@ -6,6 +6,10 @@ h3{
     font-size:16px;
 }
 
+.tooltip{
+    font-family: Tahoma,Verdana,STHeiTi,simsun,sans-serif;
+    font-size:13px;
+}
 
 .navbar-inner {
     -webkit-border-radius: 0px;
@@ -44,7 +48,7 @@ table{
 .header {
    border-right: 1px solid #E1E1E8; 
    border-bottom: 1px solid #E1E1E8; 
-   width:100px;
+   width:208px;
    background-color: #F7F7F9;
 }
 
