@@ -6,7 +6,7 @@
     "keywords": "导航站",
     "author": "jserme",
 	"dependencies": {
-		"jade": ">= 0.0.1",
+		"jade": ">= 0.0.1"
 	}
 }
 
