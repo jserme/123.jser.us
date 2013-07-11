@@ -7,7 +7,7 @@ html(lang='zh')
     meta(name='Keywords', content='前端工程师网站导航，前端工程师网址导航， Feder网址导航，前端导航，前端工程师导航，前端教程，优秀前端工程师聚合')
     meta(name='description', content='content')
     meta(name='viewport', content='width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no')
-    link(href="http://libs.baidu.com/bootstrap/2.0.4/css/bootstrap.min.css", rel="stylesheet")
+    link(href="http://libs.baidu.com/bootstrap/2.3.2/css/bootstrap.min.css", rel="stylesheet")
     link(rel='stylesheet', type='text/css', href='style.css')
   body
     a(class="ribbon", href="http://github.com/jserme/123.jser.us", target="_blank")
@@ -28,6 +28,8 @@ html(lang='zh')
                 a(href='https://github.com/jserme/123.jser.us#readme', target='_blank') 我要补充
               li
                 a(href='http://weibo.com/ihubo', target='_blank') 微博反馈
+              li
+                a(href='javascript:;', data-toggle='feedback') 意见&反馈
     .container
         each  tag in keyArry
           .tag
@@ -52,11 +54,8 @@ html(lang='zh')
         p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！
         p  最后更新于 #{buildDate}
     script(src='http://libs.baidu.com/jquery/1.8.0/jquery.js')
-    script(src='http://libs.baidu.com/bootstrap/2.0.4/js/bootstrap.min.js')
-    script(type='text/javascript')
-      $('body').tooltip({
-      selector: "a[data-toggle=tooltip]"
-      })
+    script(src='http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js')
+    script(type='text/javascript', src='app.js')
     script(type='text/javascript')
       (function() {
       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
