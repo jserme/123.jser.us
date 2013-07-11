@@ -75,7 +75,8 @@ table{
 .tag li a{
     display:block;
     padding:5px;
-    height:72px;
+    height:82px;
+    font-family: 'Hiragino Sans GB', Helvetica, Arial, sans-serif;
 }
 
 .tag li a p{
@@ -88,6 +89,16 @@ table{
     text-decoration:none;
 }
 
+.tag li h3{
+    margin-bottom: 7px;
+    font-size: 14px; 
+    line-height: 20px;
+}
+
+.tag li p{
+    margin: 0;
+    font-size: 11px;
+}
 
 @media screen and (min-width:1440px) {
     
