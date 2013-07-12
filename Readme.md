@@ -12,10 +12,10 @@
   可以使用下面的任意一种方式来补充资源
   
   1. 推荐使用自带的交互脚本来添加
-  	
-  	 ```
- 	 ./add.js
- 	 ```
+    
+     ```
+     ./add.js
+     ```
   
 
   1. 到[这里](https://github.com/jserme/123.jser.us/issues), 新建一个Issue, 格式如下

@@ -3,37 +3,31 @@
 var jade = require('jade');
 var fs = require('fs');
 var path = require('path');
-
-var data = {};
-
-data.buildDate = getCurDate();
-data.tags = {};
+var df = require('dateformat');
+var uglifyJS = require('uglify-js');
 
 var fileCount;
 
-var DATAFOLDER = "./data";
-var TEMPLATEFILE = "./template.jade";
+var DATAFOLDER = "./data/sites/";
+var TEMPLATE_INDEX = "./src/index.jade";
 var DSTFILE = "./index.html";
+var SRCJS = "./src/app.js";
+var DSTJS = "./app-min.js";
 
-function prePaddingNum(num, count) {
-    var baseNum = Math.pow(10, count - 1);
-    if (parseInt(num, 10) < baseNum) {
-        return (baseNum + '').slice(1) + '' + num;
-    } else {
-        return num;
-    }
-}
+var sortFunc = function(a, b) {
+    return a.name < b.name;
+};
 
-function getCurDate() {
-    var d = new Date();
-    return d.getFullYear() + '-' + prePaddingNum(d.getMonth() + 1, 2) + '-' + prePaddingNum(d.getDate(), 2) + ' ' + prePaddingNum(d.getHours(), 2) + ':' + prePaddingNum(d.getMinutes(), 2) + ':' + prePaddingNum(d.getSeconds(), 2);
-}
+var data = {};
+
+data.buildDate = df(new Date(), 'yyyy-mm-dd hh:MM:ss');
+data.tags = {};
+
 
 function parseTmpl() {
-    fs.readFile(TEMPLATEFILE, 'utf8', function(err, tmpl) {
-        //var fn = jade.compile(tmpl, {pretty : true});
+    fs.readFile(TEMPLATE_INDEX, 'utf8', function(err, tmpl) {
         var fn = jade.compile(tmpl, {
-            pretty: true
+            //pretty: true
         });
 
         var keyArry = [];
@@ -41,9 +35,7 @@ function parseTmpl() {
             keyArry.push(key);
 
             //保证顺序
-            data.tags[key] = data.tags[key].sort(function(a, b) {
-                return a.name < b.name;
-            });
+            data.tags[key] = data.tags[key].sort(sortFunc);
         }
 
         //保证顺序
@@ -59,13 +51,28 @@ function parseTmpl() {
     });
 }
 
+//转为合法的JSON文件
+
+function toJSONSync() {
+    var files = fs.readdirSync(DATAFOLDER);
+    fileCount = files.length;
+    files.forEach(function(v, i) {
+        var json = fs.readFileSync(path.join(DATAFOLDER, v), 'utf8');
+        var o = eval('(' + json.trim() + ')');
+        fs.writeFileSync(path.join(DATAFOLDER, v), JSON.stringify(o), 'utf8');
+    });
+}
+
 fs.readdir(DATAFOLDER, function(err, files) {
     fileCount = files.length;
     files.forEach(function(v, i) {
         fs.readFile(path.join(DATAFOLDER, v), 'utf8', function(err, j) {
+            if (!j || err) {
+                throw (err);
+            }
+
             var siteName, o, tags;
-            //siteName = v.replace(/\.json$/, '');
-            o = eval('(' + j.trim() + ')');
+            o = JSON.parse(j);
             o.name = v;
 
             tags = o.tags.split(/,| |，| /);
@@ -82,3 +89,6 @@ fs.readdir(DATAFOLDER, function(err, files) {
         });
     });
 });
+
+//最小化一下JS
+fs.writeFile(DSTJS, uglifyJS.minify(SRCJS).code);

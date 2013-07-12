@@ -4,7 +4,7 @@ var readline = require('readline');
 var fs = require('fs');
 var path = require('path');
 
-var keyArry = ['name', 'description', 'url', 'tags'];
+var keyArry = ['站点名', '描述', '网站', '标签'];
 
 var rl = readline.createInterface({
     input: process.stdin,
@@ -17,7 +17,7 @@ var rst = {};
 var DATAPATH = './data';
 
 function init() {
-    rl.question("site  " + keyArry[i] + ' is:', function(answer) {
+    rl.question("网站的  " + keyArry[i] + ' 是:', function(answer) {
         rst[keyArry[i]] = answer;
         i++;
 
@@ -25,7 +25,8 @@ function init() {
             fs.writeFile(path.join(DATAPATH, rst.name), JSON.stringify({
                 description: rst.description,
                 tags: rst.tags,
-                url: rst.url
+                url: rst.url,
+                createAt: new Date()
             }), function(err) {
                 if (err) {
                     throw err;

@@ -1,12 +1,13 @@
 {
-	"name": "123.jser.us",
-	"version": "0.0.1",
+    "name": "123.jser.us",
+    "version": "0.0.1",
     "description": "前端工程师的导航站",
     "git repository": "https://github.com/jserme/123.jser.us",
     "keywords": "导航站",
     "author": "jserme",
-	"dependencies": {
-		"jade": ">= 0.0.1"
-	}
+    "dependencies": {
+        "dateformat": "1.0.6-1.2.3",
+        "jade": ">= 0.0.1",
+        "uglify-js": ">=0.0.1"
+    }
 }
-
