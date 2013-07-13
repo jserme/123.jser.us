@@ -11,8 +11,12 @@ var fileCount;
 var DATAFOLDER = "./data/sites/";
 var TEMPLATE_INDEX = "./src/index.jade";
 var DSTFILE = "./index.html";
+
 var SRCJS = "./src/app.js";
 var DSTJS = "./app-min.js";
+
+var SRCCSS = './src/style.css';
+var DSTCSS = './style.css';
 
 var sortFunc = function(a, b) {
     return a.name < b.name;
@@ -53,15 +57,15 @@ function parseTmpl() {
 
 //转为合法的JSON文件
 
-function toJSONSync() {
-    var files = fs.readdirSync(DATAFOLDER);
-    fileCount = files.length;
-    files.forEach(function(v, i) {
-        var json = fs.readFileSync(path.join(DATAFOLDER, v), 'utf8');
-        var o = eval('(' + json.trim() + ')');
-        fs.writeFileSync(path.join(DATAFOLDER, v), JSON.stringify(o), 'utf8');
-    });
-}
+//function toJSONSync() {
+//    var files = fs.readdirSync(DATAFOLDER);
+//    fileCount = files.length;
+//    files.forEach(function(v, i) {
+//        var json = fs.readFileSync(path.join(DATAFOLDER, v), 'utf8');
+//        var o = eval('(' + json.trim() + ')');
+//        fs.writeFileSync(path.join(DATAFOLDER, v), JSON.stringify(o), 'utf8');
+//    });
+//}
 
 fs.readdir(DATAFOLDER, function(err, files) {
     fileCount = files.length;
@@ -92,3 +96,6 @@ fs.readdir(DATAFOLDER, function(err, files) {
 
 //最小化一下JS
 fs.writeFile(DSTJS, uglifyJS.minify(SRCJS).code);
+
+//copy css
+fs.writeFile(DSTCSS, fs.readFileSync(SRCCSS, 'utf8'));
