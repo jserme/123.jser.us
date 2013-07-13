@@ -6,6 +6,8 @@ var path = require('path');
 var df = require('dateformat');
 var uglifyJS = require('uglify-js');
 
+var isLocal = true;
+
 var fileCount;
 
 var DATAFOLDER = "./data/sites/";
@@ -44,6 +46,7 @@ function parseTmpl() {
 
         //保证顺序
         data.keyArry = keyArry.sort();
+        data.isLocal = isLocal;
 
         fs.writeFile(DSTFILE, fn(data), 'utf-8', function(err) {
             if (err) {
