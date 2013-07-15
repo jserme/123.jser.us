@@ -6,17 +6,22 @@ var path = require('path');
 var df = require('dateformat');
 var uglifyJS = require('uglify-js');
 
-var fileCount;
 
-var DATAFOLDER = "./data/sites/";
+var DATAFOLDER = "./data/sites";
+var INFO = "./data/info.json";
+var INDEXS = "./data/indexs.json";
+
 var TEMPLATE_INDEX = "./src/index.jade";
 var DSTFILE = "./index.html";
+
 var SRCJS = "./src/app.js";
 var DSTJS = "./app-min.js";
 
 var sortFunc = function(a, b) {
     return a.name < b.name;
 };
+
+var totalCount;
 
 var data = {};
 
@@ -45,17 +50,16 @@ function parseTmpl() {
             if (err) {
                 console.log(err);
             } else {
-                console.log('cool! u got it!');
+                console.log('页面生成完毕!');
             }
         });
     });
 }
 
 //转为合法的JSON文件
-
 function toJSONSync() {
     var files = fs.readdirSync(DATAFOLDER);
-    fileCount = files.length;
+    totalCount = files.length;
     files.forEach(function(v, i) {
         var json = fs.readFileSync(path.join(DATAFOLDER, v), 'utf8');
         var o = eval('(' + json.trim() + ')');
@@ -63,8 +67,23 @@ function toJSONSync() {
     });
 }
 
+function writeSiteInfo(info) {
+    fs.writeFile(INFO, JSON.stringify(info), 'utf8', function(err) {
+        if (!err) {
+            console.log('基本信息生成完成');
+        }
+    });
+}
+
+
 fs.readdir(DATAFOLDER, function(err, files) {
-    fileCount = files.length;
+    totalCount = files.length;
+    var info = {
+        totalCount: totalCount,
+        lastUpdateDate: 'date',
+        lastUpdateCount: '最新更新数量'
+    };
+
     files.forEach(function(v, i) {
         fs.readFile(path.join(DATAFOLDER, v), 'utf8', function(err, j) {
             if (!j || err) {
@@ -83,8 +102,9 @@ fs.readdir(DATAFOLDER, function(err, files) {
 
                 data.tags[v].push(o);
             });
-            if (--fileCount === 0) {
+            if (--totalCount === 0) {
                 parseTmpl();
+                writeSiteInfo(info);
             }
         });
     });
