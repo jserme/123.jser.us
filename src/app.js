@@ -35,6 +35,11 @@ $(function() {
         trigger: 'click'
     });
 
+    
+
+
+
+
     $('body').tooltip({
         selector : 'a[data-toggle=tooltip]'
     });
