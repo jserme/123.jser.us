@@ -92,8 +92,12 @@ fs.readdir(DATAFOLDER, function(err, files) {
             if (--totalCount === 0) {
                 //更新网站信息
                 info.lastUpdateCount = updateCount;
-                if( updateCount > 0 ) {
+                if (updateCount > 0) {
                     info.lastUpdateDate = df(new Date(), 'yyyy-mm-dd hh:MM:ss');
+                }
+
+                if (files.length != info.totalCount) {
+                    info.totalCount = files.length;
                 }
                 writeSiteInfo(info);
 

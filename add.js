@@ -4,7 +4,7 @@ var readline = require('readline');
 var fs = require('fs');
 var path = require('path');
 
-var keyArry = ['站点名', '描述', '网站', '标签'];
+var keyArry = ['name', 'description', 'url', 'tags'];
 
 var rl = readline.createInterface({
     input: process.stdin,
@@ -14,19 +14,22 @@ var rl = readline.createInterface({
 var i = 0;
 var rst = {};
 
-var DATAPATH = './data';
+var DATAPATH = './data/sites/';
+var info = JSON.parse(fs.readFileSync('./data/info.json', 'utf-8'));
 
 function init() {
-    rl.question("网站的  " + keyArry[i] + ' 是:', function(answer) {
+    rl.question("the site " + keyArry[i] + ' is:', function(answer) {
         rst[keyArry[i]] = answer;
         i++;
 
         if (i == keyArry.length) {
-            fs.writeFile(path.join(DATAPATH, rst.name), JSON.stringify({
+            fs.writeFile(path.join(DATAPATH, info.totalCount + '.json'), JSON.stringify({
+                name : rst.name,
+                id : info.totalCount++,
                 description: rst.description,
                 tags: rst.tags,
                 url: rst.url,
-                createAt: new Date()
+                createAt: +new Date()
             }), function(err) {
                 if (err) {
                     throw err;
