@@ -35,13 +35,50 @@ $(function() {
         trigger: 'click'
     });
 
-    
 
+    $('a.tag').mouseenter(function() {
+        var des = $(this).data('des');
+        var id = $(this).data('index');
+        var height = $(this).height();
+        var top = $(this).position().top;
 
+        var pos = 'bottom';
+        if (top + height + 450 > $(document.body).height()) {
+            pos = 'top';
+        }
 
+        $(this).popover({
+            placement: pos,
+            title: '详情',
+            html: true,
+            container: document.body,
+            content: '<p style="width:400px">' + des + '</p><iframe border="0" src="about:blank" onload="buildCommentBox(this, \'' + id + '\')" frameborder="0"  marginwidth="0" allowTransparency="true" marginheight="0"  style="border:0 none;width:400px;height:400px"></iframe>',
+            trigger: 'manual'
+        });
+
+        var tip = $(this).data('popover').tip();
+        var that = this;
+
+        clearTimeout($(this).data('timer'));
+        $(this).popover('show');
+
+        tip.one('mouseenter', function() {
+            clearTimeout($(that).data('timer'));
+        }).one('mouseleave', function() {
+            $(that).data('timer', setTimeout(function() {
+                $(that).popover('hide');
+            }, 500));
+        });
+
+    }).mouseleave(function() {
+        var that = this;
+        $(this).data('timer', setTimeout(function() {
+            $(that).popover('hide');
+        }, 500));
+    });
 
     $('body').tooltip({
-        selector : 'a[data-toggle=tooltip]'
+        selector: 'a[data-toggle=tooltip]'
     });
 
     //百度统计自定义事件数据

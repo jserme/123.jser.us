@@ -32,12 +32,12 @@ html(lang='zh')
                 a(href='javascript:;', data-toggle='feedback') 意见&反馈
     .container
         each tag in keyArry
-           .list-con
+           .list-con(id="#{tag}")
                 .page-header
                     h1 #{tag}
                 .tags-list
                   each site in tags[tag]
-                     a(href="#{site.url}", data="#{site.description}", target="_blank") #{site.name} 
+                     a.tag(href="#{site.url}", data-des="#{site.description}", data-index="#{site.id}", target="_blank") #{site.name} 
     .footer
       .container
         p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！

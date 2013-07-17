@@ -47,10 +47,6 @@ h3{
     overflow:hidden;
 }
 
-table{
-    width:100%;
-}
-
 .header {
    border-right: 1px solid #E1E1E8; 
    border-bottom: 1px solid #E1E1E8; 
@@ -65,6 +61,14 @@ table{
 .header h2{
    padding:10px;
    text-align:center;
+}
+
+.tag-detail{
+    padding:10px;
+    border: 2px solid #ddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 .page-header {
@@ -96,7 +100,7 @@ table{
     text-decoration:none;
     margin-top:10px;
     padding:15px 25px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     color: #222;
     text-align: center;
