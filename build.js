@@ -66,7 +66,6 @@ fs.readdir(DATAFOLDER, function(err, files) {
     var info = JSON.parse(fs.readFileSync(INFO));
     var updateCount = 0;
 
-
     files.forEach(function(v, i) {
         fs.readFile(path.join(DATAFOLDER, v), 'utf8', function(err, file) {
             if (!data || err) {
@@ -77,10 +76,8 @@ fs.readdir(DATAFOLDER, function(err, files) {
             o = JSON.parse(file);
 
             //一天内更新的算新增
-            if ((o.createAt - new Date()) < 2 * 24 * 60 * 60 * 1000) {
-                info.lastUpdateCount = ++updateCount;
-                info.lastUpdateDate = df(new Date(), 'yyyy-mm-dd hh:MM:ss');
-                writeSiteInfo(info);
+            if ((new Date() - o.createAt) < 1 * 24 * 60 * 60 * 1000) {
+                updateCount++;
             }
 
             tags = o.tags.split(/,| |，| /);
@@ -93,8 +90,16 @@ fs.readdir(DATAFOLDER, function(err, files) {
             });
 
             if (--totalCount === 0) {
+                //更新网站信息
+                info.lastUpdateCount = updateCount;
+                if( updateCount > 0 ) {
+                    info.lastUpdateDate = df(new Date(), 'yyyy-mm-dd hh:MM:ss');
+                }
+                writeSiteInfo(info);
+
                 data.info = info;
                 parseTmpl();
+
             }
         });
     });
