@@ -1,0 +1,1 @@
+{"description":"Wapiti 是 Web 应用程序漏洞检查工具。它具有“暗箱操作”扫描，即它不关心 Web 应用程序的源代码，但它会扫描网页的部署，寻找使其能够注入数据的脚本和格式。","tags":"安全","url":"http://www.ict-romulus.eu/web/wapiti/home","createAt":1373900914843,"id":69,"name":"Wapiti"}

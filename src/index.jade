@@ -7,11 +7,8 @@ html(lang='zh')
     meta(name='Keywords', content='前端工程师网站导航，前端工程师网址导航， Feder网址导航，前端导航，前端工程师导航，前端教程，优秀前端工程师聚合')
     meta(name='description', content='content')
     meta(name='viewport', content='width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no')
-    if( !isLocal ) 
-        link(href="http://libs.baidu.com/bootstrap/2.3.2/css/bootstrap.min.css", rel="stylesheet")
-    else 
-        link(href="src/bootstrap.min.css", rel="stylesheet")
-    link(rel='stylesheet', type='text/css', href='style.css')
+    link(href="http://libs.baidu.com/bootstrap/2.3.2/css/bootstrap.min.css", rel="stylesheet")
+    link(rel='stylesheet', type='text/css', href='style-min.css')
   body
     a(class="ribbon", href="http://github.com/jserme/123.jser.us", target="_blank")
         img(src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png", alt="Fork me on GitHub")
@@ -34,36 +31,24 @@ html(lang='zh')
               li
                 a(href='javascript:;', data-toggle='feedback') 意见&反馈
     .container
-        each  tag in keyArry
-          .tag
-            table(cellspacing='0')
-              tr
-                td.header
-                  h2  #{tag} 
-                td.content
-                  ul
-                    each site in tags[ tag ]
-                        li
-                           if( site.description.length > 26 ) 
-                               a(href="#{site.url}", target="_blank", data-toggle="tooltip", title="#{site.description}")
-                                 h3 #{site.name} 
-                                 p  #{site.description.slice(0, 23) + '...'} 
-                                 p  #{site.description} 
-                           else 
-                               a(href="#{site.url}", target="_blank")
-                                 h3 #{site.name} 
-                                 p  #{site.description} 
-                            span.comment 评论
+        each tag in keyArry
+           .list-con(id="#{tag}")
+                .page-header
+                    h1 #{tag}
+                .tags-list
+                  each site in tags[tag]
+                     a.tag(href="#{site.url}", data-des="#{site.description}", data-index="#{site.id}", target="_blank") #{site.name} 
     .footer
       .container
         p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！
-        p  最后更新于 #{buildDate}
-    if( !isLocal ) 
-        script(src='http://libs.baidu.com/jquery/1.8.0/jquery.min.js')
-        script(src='http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js')
-    else 
-        script(src='src/jquery.min.js')
-        script(src='src/bootstrap.min.js')
+        p  共收录工具及链接 
+          span.totalCount #{info.totalCount} 
+          个
+        p  最后更新于 #{info.lastUpdateDate}
+           if( info.lastUpdateCount > 0 )
+               , 更新数量#{info.lastUpdateCount}
+    script(src='http://libs.baidu.com/jquery/1.8.0/jquery.js')
+    script(src='http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js')
     script(type='text/javascript', src='app-min.js')
     script(type='text/javascript').
       (function() {

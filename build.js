@@ -5,30 +5,28 @@ var fs = require('fs');
 var path = require('path');
 var df = require('dateformat');
 var uglifyJS = require('uglify-js');
+var cleanCSS = require('clean-css');
 
-var isLocal = true;
 
-var fileCount;
+var DATAFOLDER = "./data/sites";
+var INFO = "./data/info.json";
+var INDEXS = "./data/indexs.json";
 
-var DATAFOLDER = "./data/sites/";
 var TEMPLATE_INDEX = "./src/index.jade";
 var DSTFILE = "./index.html";
 
 var SRCJS = "./src/app.js";
 var DSTJS = "./app-min.js";
 
-var SRCCSS = './src/style.css';
-var DSTCSS = './style.css';
+var SRCCSS = "./src/style.css";
+var DSTCSS = "./style-min.css";
 
 var sortFunc = function(a, b) {
     return a.name < b.name;
 };
 
 var data = {};
-
-data.buildDate = df(new Date(), 'yyyy-mm-dd hh:MM:ss');
 data.tags = {};
-
 
 function parseTmpl() {
     fs.readFile(TEMPLATE_INDEX, 'utf8', function(err, tmpl) {
@@ -46,41 +44,41 @@ function parseTmpl() {
 
         //保证顺序
         data.keyArry = keyArry.sort();
-        data.isLocal = isLocal;
 
         fs.writeFile(DSTFILE, fn(data), 'utf-8', function(err) {
             if (err) {
                 console.log(err);
             } else {
-                console.log('cool! u got it!');
+                console.log('页面生成完毕!');
             }
         });
     });
 }
 
-//转为合法的JSON文件
+function writeSiteInfo(info) {
+    fs.writeFileSync(INFO, JSON.stringify(info), 'utf8');
+    console.log('基本信息生成完成');
+}
 
-//function toJSONSync() {
-//    var files = fs.readdirSync(DATAFOLDER);
-//    fileCount = files.length;
-//    files.forEach(function(v, i) {
-//        var json = fs.readFileSync(path.join(DATAFOLDER, v), 'utf8');
-//        var o = eval('(' + json.trim() + ')');
-//        fs.writeFileSync(path.join(DATAFOLDER, v), JSON.stringify(o), 'utf8');
-//    });
-//}
 
 fs.readdir(DATAFOLDER, function(err, files) {
-    fileCount = files.length;
+    var totalCount = files.length;
+    var info = JSON.parse(fs.readFileSync(INFO));
+    var updateCount = 0;
+
     files.forEach(function(v, i) {
-        fs.readFile(path.join(DATAFOLDER, v), 'utf8', function(err, j) {
-            if (!j || err) {
+        fs.readFile(path.join(DATAFOLDER, v), 'utf8', function(err, file) {
+            if (!data || err) {
                 throw (err);
             }
 
-            var siteName, o, tags;
-            o = JSON.parse(j);
-            o.name = v;
+            var o, tags;
+            o = JSON.parse(file);
+
+            //一天内更新的算新增
+            if ((new Date() - o.createAt) < 1 * 24 * 60 * 60 * 1000) {
+                updateCount++;
+            }
 
             tags = o.tags.split(/,| |，| /);
             tags.forEach(function(v, i) {
@@ -90,15 +88,27 @@ fs.readdir(DATAFOLDER, function(err, files) {
 
                 data.tags[v].push(o);
             });
-            if (--fileCount === 0) {
+
+            if (--totalCount === 0) {
+                //更新网站信息
+                info.lastUpdateCount = updateCount;
+                if (updateCount > 0) {
+                    info.lastUpdateDate = df(new Date(), 'yyyy-mm-dd hh:MM:ss');
+                }
+
+                if (files.length != info.totalCount) {
+                    info.totalCount = files.length;
+                }
+                writeSiteInfo(info);
+
+                data.info = info;
                 parseTmpl();
+
             }
         });
     });
 });
 
-//最小化一下JS
+//最小化一下JS和CSS
 fs.writeFile(DSTJS, uglifyJS.minify(SRCJS).code);
-
-//copy css
-fs.writeFile(DSTCSS, fs.readFileSync(SRCCSS, 'utf8'));
+fs.writeFile(DSTCSS, cleanCSS.process(fs.readFileSync(SRCCSS, 'utf-8')));
