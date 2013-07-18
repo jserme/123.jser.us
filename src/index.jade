@@ -30,6 +30,8 @@ html(lang='zh')
                 a(href='http://weibo.com/ihubo', target='_blank') 微博反馈
               li
                 a(href='javascript:;', data-toggle='feedback') 意见&反馈
+              li
+                a(href='https://me.alipay.com/ihubo', target='_blank') 捐赠 
     .container
         each tag in keyArry
            .list-con(id="#{tag}")
@@ -41,6 +43,8 @@ html(lang='zh')
     .footer
       .container
         p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！
+        p  如果你觉得对你有用，可以
+           a(href='https://me.alipay.com/ihubo', target='_blank') 捐赠 
         p  共收录工具及链接 
           span.totalCount #{info.totalCount} 
           个

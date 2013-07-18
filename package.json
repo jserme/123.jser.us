@@ -7,6 +7,7 @@
     "author": "jserme",
     "dependencies": {
         "dateformat": "1.0.6-1.2.3",
+        "clean-css": "1.0.11",
         "jade": ">= 0.0.1",
         "uglify-js": ">=0.0.1"
     }
