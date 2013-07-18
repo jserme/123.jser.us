@@ -67,14 +67,14 @@ $(function() {
         }).one('mouseleave', function() {
             $(that).data('timer', setTimeout(function() {
                 $(that).popover('hide');
-            }, 500));
+            }, 250));
         });
 
     }).mouseleave(function() {
         var that = this;
         $(this).data('timer', setTimeout(function() {
             $(that).popover('hide');
-        }, 500));
+        }, 250));
     });
 
     $('body').tooltip({
