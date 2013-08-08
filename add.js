@@ -23,7 +23,7 @@ function init() {
         i++;
 
         if (i == keyArry.length) {
-            fs.writeFile(path.join(DATAPATH, info.totalCount + '.json'), JSON.stringify({
+            fs.writeFile(path.join(DATAPATH, (++info.totalCount) + '.json'), JSON.stringify({
                 name : rst.name,
                 id : info.totalCount++,
                 description: rst.description,
