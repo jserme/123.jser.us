@@ -1,4 +1,4 @@
-!!! 5
+doctype html
 html(lang='zh')
   head
     title 前端导航站 - 前端工程师专用的导航站
@@ -31,7 +31,7 @@ html(lang='zh')
               li
                 a(href='javascript:;', data-toggle='feedback') 意见&反馈
               li
-                a(href='https://me.alipay.com/ihubo', target='_blank') 捐赠 
+                a(href='http://shop107929548.taobao.com?f=123jserus', target='_blank', title='女朋友的店') 怪东东的店 
     .container
         each tag in keyArry
            .list-con(id="#{tag}")
@@ -43,14 +43,13 @@ html(lang='zh')
     .footer
       .container
         p  感谢各种开源项目, 一个程序猿的生活因为你们更美好！
-        p  如果你觉得对你有用，可以
-           a(href='https://me.alipay.com/ihubo', target='_blank') 捐赠 
+        p  如果你觉得对你有用，可以访问
+            a(href='http://shop107929548.taobao.com?f=123jserus', target='_blank', title='女朋友的店') 怪东东的店 
         p  共收录工具及链接 
-          span.totalCount #{info.totalCount} 
-          个
+          span.totalCount #{info.totalCount} 个
         p  最后更新于 #{info.lastUpdateDate}
            if( info.lastUpdateCount > 0 )
-               , 更新数量#{info.lastUpdateCount}
+              | , 更新数量#{info.lastUpdateCount}
     script(src='http://libs.baidu.com/jquery/1.8.0/jquery.js')
     script(src='http://libs.baidu.com/bootstrap/2.3.2/js/bootstrap.min.js')
     script(type='text/javascript', src='app-min.js')
